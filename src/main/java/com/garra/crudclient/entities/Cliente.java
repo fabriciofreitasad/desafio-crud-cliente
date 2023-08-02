@@ -25,7 +25,6 @@ public class Cliente {
 	private String cpf;
 	private Double income;
 	
-	@PastOrPresent
 	private LocalDate birthDate;
 	private Integer children;
 

@@ -4,17 +4,23 @@ import java.time.LocalDate;
 
 import com.garra.crudclient.entities.Cliente;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
+
 public class ClienteDTO {
 
 	private Long id;
+	
+	@Size(min = 3, max = 80,message = "Nome presisa ter de 3 a 80 caracteres")
+	@NotBlank(message = "não pode ser vazio")
 	private String name;
 	private String cpf;
 	private Double income;
+	
+	@PastOrPresent(message = "Não pode ser datas futuras")
 	private LocalDate birthDate;
 	private Integer children;
-
-	public ClienteDTO() {
-	}
 
 	public ClienteDTO(Long id, String name, String cpf, Double income, LocalDate birthDate, Integer children) {
 
@@ -25,7 +31,7 @@ public class ClienteDTO {
 		this.birthDate = birthDate;
 		this.children = children;
 	}
-	
+
 	public ClienteDTO(Cliente cliente) {
 
 		id = cliente.getId();
@@ -59,7 +65,5 @@ public class ClienteDTO {
 	public Integer getChildren() {
 		return children;
 	}
-	
-	
 
 }

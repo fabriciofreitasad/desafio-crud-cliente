@@ -25,7 +25,7 @@ public class ClienteService {
 	@Transactional(readOnly = true)
 	public ClienteDTO findById(Long id) {
 		Cliente cliente = repository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado"));
+				.orElseThrow(() -> new ResourceNotFoundException("cliente inexistente"));
 		return new ClienteDTO(cliente);
 
 	}
@@ -54,7 +54,7 @@ public class ClienteService {
 			entity = repository.save(entity);
 			return new ClienteDTO(entity);
 		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Recurso não encontrado");
+			throw new ResourceNotFoundException("cliente inexistente");
 		}
 
 	}
@@ -62,7 +62,7 @@ public class ClienteService {
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
 		if (!repository.existsById(id)) {
-			throw new ResourceNotFoundException("Recurso não encontrado");
+			throw new ResourceNotFoundException("cliente inexistente");
 		}
 		try {
 	        	repository.deleteById(id);    		
@@ -78,6 +78,7 @@ public class ClienteService {
 		entity.setCpf(dto.getCpf());
 		entity.setIncome(dto.getIncome());
 		entity.setBirthDate(dto.getBirthDate());
+		entity.setChildren(dto.getChildren());
 
 	}
 
