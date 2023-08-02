@@ -11,17 +11,19 @@ public class ClienteDTO {
 	private String cpf;
 	private Double income;
 	private LocalDate birthDate;
+	private Integer children;
 
 	public ClienteDTO() {
 	}
 
-	public ClienteDTO(Long id, String name, String cpf, Double income, LocalDate birthDate) {
+	public ClienteDTO(Long id, String name, String cpf, Double income, LocalDate birthDate, Integer children) {
 
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.income = income;
 		this.birthDate = birthDate;
+		this.children = children;
 	}
 	
 	public ClienteDTO(Cliente cliente) {
@@ -31,6 +33,7 @@ public class ClienteDTO {
 		cpf = cliente.getCpf();
 		income = cliente.getIncome();
 		birthDate = cliente.getBirthDate();
+		children = cliente.getChildren();
 	}
 
 	public Long getId() {
@@ -52,5 +55,11 @@ public class ClienteDTO {
 	public LocalDate getBirthDate() {
 		return birthDate;
 	}
+
+	public Integer getChildren() {
+		return children;
+	}
+	
+	
 
 }

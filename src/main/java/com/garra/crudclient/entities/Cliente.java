@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 @Table(name = "tb_client")
@@ -23,17 +24,21 @@ public class Cliente {
 	@Column(unique = true)
 	private String cpf;
 	private Double income;
+	
+	@PastOrPresent
 	private LocalDate birthDate;
+	private Integer children;
 
 	public Cliente() {
 	}
 
-	public Cliente(Long id, String name, String cpf, Double income, LocalDate birthDate) {
+	public Cliente(Long id, String name, String cpf, Double income, LocalDate birthDate, Integer children) {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.income = income;
 		this.birthDate = birthDate;
+		this.children = children; 
 	}
 
 	public Long getId() {
@@ -74,6 +79,15 @@ public class Cliente {
 
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+	}
+	
+
+	public Integer getChildren() {
+		return children;
+	}
+
+	public void setChildren(Integer children) {
+		this.children = children;
 	}
 
 	@Override
